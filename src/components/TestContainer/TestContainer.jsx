@@ -8,7 +8,11 @@ function TestContainer ({words, characters, wpm}) {
     return(
         <div className="test-container">
             <div data-aos="fade-up" className="typing-challenge-container">
-                <TypingChallengeContainer  />
+                <TypingChallengeContainer  
+                words={words}
+                characters={characters}
+                wpm={wpm}
+                />
             </div>
                {/* <div className="tryagain-container">
                     <TryAgain words={words} characters={characters} wpm={wpm}/>
