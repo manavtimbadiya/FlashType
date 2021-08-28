@@ -1,5 +1,6 @@
 import React from "react";
 import ChallengeDetailCard from "../ChallengeDetailsCard/ChallengeDetaliCard";
+import TypingChallenge from "../TypingChallenge/TypingChallenge";
 import "./TypingChallengeContainer.css"
 
 function TypingChallengeContainer ({words ,characters ,wpm}) {
@@ -18,7 +19,7 @@ function TypingChallengeContainer ({words ,characters ,wpm}) {
 
                   {/* The Real Challenge */}
                     <div className="typewriter-container">
-                        <p>This is a Real Challenge</p>
+                        <TypingChallenge selectedParagraph="Hello World!" />
                      </div>
         </div>
     )
