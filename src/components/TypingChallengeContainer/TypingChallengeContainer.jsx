@@ -3,7 +3,13 @@ import ChallengeDetailCard from "../ChallengeDetailsCard/ChallengeDetaliCard";
 import TypingChallenge from "../TypingChallenge/TypingChallenge";
 import "./TypingChallengeContainer.css"
 
-function TypingChallengeContainer ({words ,characters ,wpm}) {
+function TypingChallengeContainer ({
+    selectedParagraph,
+    words,
+    characters,
+    wpm,
+    timeRemaining,
+    timeStarted}) {
     return(
         <div className="typing-challenge-container">
             {/* Details Section*/}
@@ -19,7 +25,10 @@ function TypingChallengeContainer ({words ,characters ,wpm}) {
 
                   {/* The Real Challenge */}
                     <div className="typewriter-container">
-                        <TypingChallenge selectedParagraph="Hello World!" />
+                        <TypingChallenge 
+                        timeRemaining={timeRemaining}
+                        timeStarted={timeStarted}
+                        selectedParagraph={selectedParagraph} />
                      </div>
         </div>
     )

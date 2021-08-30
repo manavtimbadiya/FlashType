@@ -5,7 +5,16 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 import ChallengeSection from "../ChallengeSection/ChallengeSection";
 
+const TotalTime = 60;
 class App extends React.Component {
+    state ={
+        selectedParagraph:"Hello world!",
+        timeStarted:false,
+        timeRemaining:TotalTime,
+        words:0,
+        characters:0,
+        wpm:0,
+    }
     render () {
         return (
                 <div className="app">
@@ -14,7 +23,14 @@ class App extends React.Component {
                     {/*Landing page*/}
                     <Landing />
                     {/*Challenge Section*/}
-                    <ChallengeSection />
+                    <ChallengeSection 
+                        selectedParagraph={this.state.selectedParagraph}
+                        words={this.state.words}
+                        characters={this.state.characters}
+                        wpm={this.state.wpm}
+                        timeRemaining={this.state.timeRemaining}
+                        timeStarted={this.state.timeStarted}
+                    />
                     {/*Footer*/}
                     <Footer />
                 </div>
