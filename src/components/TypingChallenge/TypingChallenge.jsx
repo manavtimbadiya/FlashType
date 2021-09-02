@@ -1,5 +1,7 @@
 import React from "react";
 import "./TypingChallenge.css";
+import TestLetter from "../TestLetter/TestLetter";
+
 function TypingChallenge ({ selectedParagraph, 
                             timeRemaining,
                              timeStarted,
@@ -20,7 +22,10 @@ function TypingChallenge ({ selectedParagraph,
                             { /* selectedParagraph*/ } 
                             {
                                 testInfo.map((individualLetterInfo) => {
-                                    return <div>{individualLetterInfo.testLetter}</div>
+                                    return (
+                                        <TestLetter individualLetterInfo={individualLetterInfo}
+                                        />
+                                        ) 
                                 })
                             }
                             </div>
