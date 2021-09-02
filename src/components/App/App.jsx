@@ -6,6 +6,7 @@ import "./App.css";
 import ChallengeSection from "../ChallengeSection/ChallengeSection";
 
 const TotalTime = 60;
+const ServiceUrl = "http://metaphorpsum.com/paragraphs/1/9";
 class App extends React.Component {
     state ={
         selectedParagraph:"Hello world!",
@@ -15,7 +16,18 @@ class App extends React.Component {
         characters:0,
         wpm:0,
     }
-    render () {
+
+    componentDidMount () {
+        fetch(ServiceUrl)
+            .then(response => response.text())
+            .then(data => {
+                this.setState({selectedParagraph : data})
+            });
+    }
+
+
+    render ()  {
+
         return (
                 <div className="app">
                     {/*Nav Section*/}
