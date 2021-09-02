@@ -4,7 +4,6 @@ function TypingChallenge ({ selectedParagraph,
                             timeRemaining,
                              timeStarted,
                              testInfo,}) {
-    console.log('Inside typing challenge - ',testInfo);
     return (
             <div className="typing-challenge">
                 <div className="timer-container">
@@ -18,7 +17,12 @@ function TypingChallenge ({ selectedParagraph,
                 <div className="textarea-container">
                      <div className="textarea-left">
                             <div className="textarea test-paragraph">
-                            { selectedParagraph} 
+                            { /* selectedParagraph*/ } 
+                            {
+                                testInfo.map((individualLetterInfo) => {
+                                    return <div>{individualLetterInfo.testLetter}</div>
+                                })
+                            }
                             </div>
                      </div>
                      <div className="textarea-right">
