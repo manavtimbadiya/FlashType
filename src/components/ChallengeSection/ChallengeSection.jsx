@@ -8,7 +8,9 @@ function ChallengeSection ({
         characters,
         wpm,
         timeRemaining,
-        timeStarted}) {
+        timeStarted,
+        testInfo,
+    }) {
     return (
         <div className="challenge-container">
             <h1 data-aos="fade-down" className="challenge-header">
@@ -20,6 +22,7 @@ function ChallengeSection ({
              selectedParagraph={selectedParagraph}
              timeRemaining={timeRemaining}
              timeStarted={timeStarted}
+             testInfo={testInfo}
              />   
         </div>
     )

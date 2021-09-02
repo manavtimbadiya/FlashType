@@ -9,7 +9,8 @@ function TypingChallengeContainer ({
     characters,
     wpm,
     timeRemaining,
-    timeStarted}) {
+    timeStarted,
+    testInfo,}) {
     return(
         <div className="typing-challenge-container">
             {/* Details Section*/}
@@ -26,6 +27,7 @@ function TypingChallengeContainer ({
                   {/* The Real Challenge */}
                     <div className="typewriter-container">
                         <TypingChallenge 
+                        testInfo={testInfo}
                         timeRemaining={timeRemaining}
                         timeStarted={timeStarted}
                         selectedParagraph={selectedParagraph} />

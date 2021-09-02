@@ -18,7 +18,7 @@ class App extends React.Component {
         testInfo: [],
     }
 
-    componentDidMount () {
+    componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
        // fetch(ServiceUrl)
          //   .then(response => response.text())
            // .then(data => {
@@ -38,7 +38,6 @@ class App extends React.Component {
 
 
     render ()  {
-        console.log("Test Info -",this.state.testInfo);
         return (
                 <div className="app">
                     {/*Nav Section*/}
@@ -53,6 +52,7 @@ class App extends React.Component {
                         wpm={this.state.wpm}
                         timeRemaining={this.state.timeRemaining}
                         timeStarted={this.state.timeStarted}
+                        testInfo={this.state.testInfo}
                     />
                     {/*Footer*/}
                     <Footer />

@@ -9,7 +9,8 @@ function TestContainer ({
     characters,
     wpm,
     timeRemaining,
-    timeStarted}) {
+    timeStarted,
+    testInfo,}) {
     return(
         <div className="test-container">
             {
@@ -22,6 +23,7 @@ function TestContainer ({
                     words={words}
                     characters={characters}
                     wpm={wpm}
+                    testInfo={testInfo}
                     />
                 </div>
                 ) : (
