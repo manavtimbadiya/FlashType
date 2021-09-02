@@ -26,12 +26,19 @@ class App extends React.Component {
             //});
 
         const selectedParagraphArray = this.state.selectedParagraph.split("");
-        console.log('splited array - ', selectedParagraphArray);
+        const testInfo = selectedParagraphArray.map(selectedLetter => {
+            return {
+                testLetter : selectedLetter,
+                status : "notAttempted",
+            };
+        });
+
+        this.setState({testInfo : testInfo}) 
     }
 
 
     render ()  {
-
+        console.log("Test Info -",this.state.testInfo);
         return (
                 <div className="app">
                     {/*Nav Section*/}
