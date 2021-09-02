@@ -15,14 +15,18 @@ class App extends React.Component {
         words:0,
         characters:0,
         wpm:0,
+        testInfo: [],
     }
 
     componentDidMount () {
-        fetch(ServiceUrl)
-            .then(response => response.text())
-            .then(data => {
-                this.setState({selectedParagraph : data})
-            });
+       // fetch(ServiceUrl)
+         //   .then(response => response.text())
+           // .then(data => {
+             //   this.setState({selectedParagraph : data})
+            //});
+
+        const selectedParagraphArray = this.state.selectedParagraph.split("");
+        console.log('splited array - ', selectedParagraphArray);
     }
 
 
