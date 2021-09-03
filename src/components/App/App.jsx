@@ -89,6 +89,14 @@ class App extends React.Component {
                 characters,
                 words,
             });
+            
+            return;
+         }
+
+         if(index >= this.state.selectedParagraph.length)
+         {
+            this.setState({characters,words});
+            return;
          }
     }
 
