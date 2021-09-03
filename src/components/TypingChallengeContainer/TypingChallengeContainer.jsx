@@ -10,7 +10,8 @@ function TypingChallengeContainer ({
     wpm,
     timeRemaining,
     timeStarted,
-    testInfo,}) {
+    testInfo,
+    onInputChange,}) {
     return(
         <div className="typing-challenge-container">
             {/* Details Section*/}
@@ -30,7 +31,8 @@ function TypingChallengeContainer ({
                         testInfo={testInfo}
                         timeRemaining={timeRemaining}
                         timeStarted={timeStarted}
-                        selectedParagraph={selectedParagraph} />
+                        selectedParagraph={selectedParagraph} 
+                        onInputChange={onInputChange}/>
                      </div>
         </div>
     )

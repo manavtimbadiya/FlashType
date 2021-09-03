@@ -17,6 +17,22 @@ class App extends React.Component {
         wpm:0,
         testInfo: [],
     }
+    /**
+ * Schema of Test Info:
+ * [
+ *    {
+ *      testLetter: 'H',
+ *      status: correct/incorrect/notAttempted
+ *    }, {
+ *      testLetter: 'e',
+ *      status: correct/incorrect/notAttempted
+ *    }
+ * ]
+ */
+
+    handleUserInput = (inputValue) => {
+        console.log(inputValue);
+    }
 
     componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
        // fetch(ServiceUrl)
@@ -53,6 +69,7 @@ class App extends React.Component {
                         timeRemaining={this.state.timeRemaining}
                         timeStarted={this.state.timeStarted}
                         testInfo={this.state.testInfo}
+                        onInputChange ={this.handleUserInput}
                     />
                     {/*Footer*/}
                     <Footer />

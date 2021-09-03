@@ -5,7 +5,8 @@ import TestLetter from "../TestLetter/TestLetter";
 function TypingChallenge ({ selectedParagraph, 
                             timeRemaining,
                              timeStarted,
-                             testInfo,}) {
+                             testInfo,
+                            onInputChange,}) {
     return (
             <div className="typing-challenge">
                 <div className="timer-container">
@@ -21,9 +22,9 @@ function TypingChallenge ({ selectedParagraph,
                             <div className="textarea test-paragraph">
                             { /* selectedParagraph*/ } 
                             {
-                                testInfo.map((individualLetterInfo) => {
+                                testInfo.map((individualLetterInfo,index) => {
                                     return (
-                                        <TestLetter individualLetterInfo={individualLetterInfo}
+                                        <TestLetter key={index}  individualLetterInfo={individualLetterInfo}
                                         />
                                         ) 
                                 })
@@ -31,7 +32,9 @@ function TypingChallenge ({ selectedParagraph,
                             </div>
                      </div>
                      <div className="textarea-right">
-                        <textarea  className="textarea" placeholder="Start typing here"></textarea>
+                        <textarea  
+                            onChange={(e) => onInputChange(e.target.value)}
+                            className="textarea" placeholder="Start typing here"></textarea>
                      </div>
                 </div>
             </div>
