@@ -30,8 +30,24 @@ class App extends React.Component {
  * ]
  */
 
+    startTimer = () => {
+        this.setState( {timeStarted: true} );
+        const timer = setInterval(() => {
+            if(this.state.timeRemaining > 0)
+                {
+                    this.setState({
+                    timeRemaining: this.state.timeRemaining - 1,
+                    });    
+                }
+            else 
+                {
+                    clearInterval(timer);
+                }   
+        },1000);
+    }
+
     handleUserInput = (inputValue) => {
-        console.log(inputValue);
+        if(this.state.timeStarted == false) this.startTimer();
     }
 
     componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
