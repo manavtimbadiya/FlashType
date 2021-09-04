@@ -28,7 +28,7 @@ function TypingChallenge ({ selectedParagraph,
                                             key={index}  
                                             individualLetterInfo={individualLetterInfo}
                                         />
-                                        ) 
+                                        )  
                                 })
                             }
                             </div>
