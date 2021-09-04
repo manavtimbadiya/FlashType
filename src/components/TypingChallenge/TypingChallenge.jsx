@@ -22,9 +22,11 @@ function TypingChallenge ({ selectedParagraph,
                             <div className="textarea test-paragraph">
                             { /* selectedParagraph*/ } 
                             {
-                                testInfo.map((individualLetterInfo,index) => {
+                                testInfo.map((individualLetterInfo, index) => {
                                     return (
-                                        <TestLetter key={index}  individualLetterInfo={individualLetterInfo}
+                                        <TestLetter 
+                                            key={index}  
+                                            individualLetterInfo={individualLetterInfo}
                                         />
                                         ) 
                                 })
