@@ -7,9 +7,8 @@ import ChallengeSection from "../ChallengeSection/ChallengeSection";
 
 const TotalTime = 60;
 const ServiceUrl = "http://metaphorpsum.com/paragraphs/1/9";
-class App extends React.Component {
-    state ={
-        selectedParagraph:"Hello world!",
+const DefaultState = {
+        selectedParagraph:"",
         timeStarted:false,
         timeRemaining:TotalTime,
         words:0,
@@ -17,6 +16,10 @@ class App extends React.Component {
         wpm:0,
         testInfo: [],
     }
+
+class App extends React.Component {
+    state = DefaultState;
+    
     /**
  * Schema of Test Info:
  * [
