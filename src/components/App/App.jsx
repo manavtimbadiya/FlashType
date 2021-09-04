@@ -1,12 +1,13 @@
 import React from "react";
+import {SAMPLE_PARAGRAPHS} from "../../data/sampleParagraph";
 import Nav from "../Nav/Nav";
 import Landing from "../Landing/Landing";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import ChallengeSection from "../ChallengeSection/ChallengeSection";
 
-const TotalTime = 60;
-const ServiceUrl = "http://metaphorpsum.com/paragraphs/1/9";
+
+const TotalTime = 10;
 const DefaultState = {
         selectedParagraph:"",
         timeStarted:false,
@@ -18,8 +19,17 @@ const DefaultState = {
     }
 
 class App extends React.Component {
+     // state = {
+    //     selectedParagraph: "Hello World!",
+    //     testInfo: [],
+    //     timerStarted: false,
+    //     timeRemaining: TotalTime,
+    //     words: 0,
+    //     characters: 0,
+    //     wpm: 0,
+    // };
     state = DefaultState;
-    
+
     /**
  * Schema of Test Info:
  * [
@@ -33,26 +43,60 @@ class App extends React.Component {
  * ]
  */
 
- 
-    componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
-        fetch(ServiceUrl)
-            .then(response => response.text())
-            .then(data => {
+   /* fetchNewParagraphFallback = () => {
+        const data =
+            SAMPLE_PARAGRAPHS[
+                Math.floor(Math.random() * SAMPLE_PARAGRAPHS.length)
+            ];
 
-            const selectedParagraphArray = data.split("");
-            const testInfo = selectedParagraphArray.map(selectedLetter => {
+        const selectedParagraphArray = data.split("");
+        const testInfo = selectedParagraphArray.map((selectedLetter) => {
             return {
-                testLetter : selectedLetter,
-                status : "notAttempted",
+                testLetter: selectedLetter,
+                status: "notAttempted",
             };
         });
 
-        this.setState({testInfo, selectedParagraph: data}) 
-            });
+        // Update the testInfo in state
+        this.setState({
+            ...DefaultState,
+            selectedParagraph: data,
+            testInfo,
+        });
+    };
+*/
 
+     fetchNewParagraph = () => {
+        fetch("http://metaphorpsum.com/paragraphs/1/9")
+            .then((response) => response.text())
+            .then((data) => {
+                // Once the api results are here, break the selectedParagraph into test info
+                const selectedParagraphArray = data.split("");
+                const testInfo = selectedParagraphArray.map(
+                    (selectedLetter) => {
+                        return {
+                            testLetter: selectedLetter,
+                            status: "notAttempted",
+                        };
+                    }
+                );
+
+                // Update the testInfo in state
+                this.setState({
+                    ...DefaultState,
+                    selectedParagraph: data,
+                    testInfo,
+                });
+            });
+    };
+
+    componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
+       this.fetchNewParagraph();
     }
 
-   startTimer = () => {
+    startAgain = () => this.fetchNewParagraph();    
+    
+    startTimer = () => {
         this.setState( {timeStarted: true} );
         const timer = setInterval(() => {
             if(this.state.timeRemaining > 0)
@@ -74,6 +118,8 @@ class App extends React.Component {
                 }   
         },1000);
     }
+
+    
 
     handleUserInput = (inputValue) => {
         if(this.state.timeStarted === false) this.startTimer();
@@ -156,6 +202,7 @@ class App extends React.Component {
                         timeStarted={this.state.timeStarted}
                         testInfo={this.state.testInfo}
                         onInputChange ={this.handleUserInput}
+                        startAgain={this.startAgain}
                     />
                     {/*Footer*/}
                     <Footer />
