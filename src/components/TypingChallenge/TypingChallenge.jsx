@@ -28,9 +28,9 @@ function TypingChallenge ({ selectedParagraph,
                                             key={index}  
                                             individualLetterInfo={individualLetterInfo}
                                         />
-                                        )  
+                                        )   
                                 })
-                            }
+                            }  
                             </div>
                      </div>
                      <div className="textarea-right">
