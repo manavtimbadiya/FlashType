@@ -7,7 +7,7 @@ import "./App.css";
 import ChallengeSection from "../ChallengeSection/ChallengeSection";
 
 
-const TotalTime = 10;
+const TotalTime = 60;
 const DefaultState = {
         selectedParagraph:"",
         timeStarted:false,
@@ -43,7 +43,7 @@ class App extends React.Component {
  * ]
  */
 
-   /* fetchNewParagraphFallback = () => {
+    fetchParagraphFallback = () => {
         const data =
             SAMPLE_PARAGRAPHS[
                 Math.floor(Math.random() * SAMPLE_PARAGRAPHS.length)
@@ -64,10 +64,10 @@ class App extends React.Component {
             testInfo,
         });
     };
-*/
+
 
      fetchNewParagraph = () => {
-        fetch("http://metaphorpsum.com/paragraphs/1/9")
+        fetch("http://metaphorpsum.com/paragraphs/1/8")
             .then((response) => response.text())
             .then((data) => {
                 // Once the api results are here, break the selectedParagraph into test info
@@ -91,10 +91,10 @@ class App extends React.Component {
     };
 
     componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
-       this.fetchNewParagraph();
+       this.fetchParagraphFallback();
     }
  
-    startAgain = () => this.fetchNewParagraph();    
+    startAgain = () => this.fetchParagraphFallback();    
     
     startTimer = () => {
         this.setState( {timeStarted: true} );
