@@ -93,7 +93,7 @@ class App extends React.Component {
     componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
        this.fetchNewParagraph();
     }
-
+ 
     startAgain = () => this.fetchNewParagraph();    
     
     startTimer = () => {
