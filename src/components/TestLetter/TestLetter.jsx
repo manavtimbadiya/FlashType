@@ -24,8 +24,10 @@ function TestLetter({individualLetterInfo}){
 	}
 */
 	return (
-		<span className={`test-letter ${statusClass}`}>{individualLetterInfo.testLetter} </span>
-		)
+		<span className={`test-letter ${statusClass}`}>
+			{individualLetterInfo.testLetter}
+		 </span>
+		);
 }
 
 export default TestLetter;
