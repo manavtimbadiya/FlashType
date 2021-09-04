@@ -30,7 +30,26 @@ class App extends React.Component {
  * ]
  */
 
-    startTimer = () => {
+ 
+    componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
+        fetch(ServiceUrl)
+            .then(response => response.text())
+            .then(data => {
+
+            const selectedParagraphArray = data.split("");
+            const testInfo = selectedParagraphArray.map(selectedLetter => {
+            return {
+                testLetter : selectedLetter,
+                status : "notAttempted",
+            };
+        });
+
+        this.setState({testInfo, selectedParagraph: data}) 
+            });
+
+    }
+
+   startTimer = () => {
         this.setState( {timeStarted: true} );
         const timer = setInterval(() => {
             if(this.state.timeRemaining > 0)
@@ -54,7 +73,7 @@ class App extends React.Component {
     }
 
     handleUserInput = (inputValue) => {
-        if(this.state.timeStarted == false) this.startTimer();
+        if(this.state.timeStarted === false) this.startTimer();
 
          /**
          * 1. Handle the underflow case - all characters should be shown as not-attempted
@@ -76,7 +95,7 @@ class App extends React.Component {
          const words = inputValue.split(" ").length;
          const index = characters - 1 ;
 
-         if(index >0)
+         if(index < 0)
          {
             this.setState({
                 testInfo: [
@@ -89,7 +108,7 @@ class App extends React.Component {
                 characters,
                 words,
             });
-            
+
             return;
          }
 
@@ -98,24 +117,22 @@ class App extends React.Component {
             this.setState({characters,words});
             return;
          }
-    }
 
-    componentDidMount () {   //this is used because fetching paragraph from url take a time so render first call then cDM call so It Doesn't take time to loading page.
-       // fetch(ServiceUrl)
-         //   .then(response => response.text())
-           // .then(data => {
-             //   this.setState({selectedParagraph : data})
-            //});
+         //Make a copy of testInfo
+         const testInfo = this.state.testInfo;
+         if(!(index === this.state.selectedParagraph.length - 1))
+            testInfo[index + 1].status = "notAttempted";
 
-        const selectedParagraphArray = this.state.selectedParagraph.split("");
-        const testInfo = selectedParagraphArray.map(selectedLetter => {
-            return {
-                testLetter : selectedLetter,
-                status : "notAttempted",
-            };
-        });
+        //Check for the correcct typed letter
+        const isMistake = inputValue[index] === testInfo[index].testLetter;
 
-        this.setState({testInfo : testInfo}) 
+        //Update the testInfo
+        testInfo[index].status = isMistake ? "correct" : "incorrect";
+
+        //Update the state 
+        this.setState({testInfo,
+                    words,
+                    characters})
     }
 
 
