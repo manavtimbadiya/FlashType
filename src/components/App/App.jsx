@@ -29,7 +29,7 @@ class App extends React.Component {
     //     wpm: 0,
     // };
     state = DefaultState;
-
+ 
     /**
  * Schema of Test Info:
  * [
@@ -39,7 +39,7 @@ class App extends React.Component {
  *    }, {
  *      testLetter: 'e',
  *      status: correct/incorrect/notAttempted
- *    }
+ *    } 
  * ]
  */
 
